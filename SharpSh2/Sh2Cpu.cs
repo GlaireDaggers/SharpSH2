@@ -2332,7 +2332,7 @@ namespace SharpSh2
 			uint n = (uint)(op >> 8) & 0xF;
 
 			_regs[n] -= 4;
-			_bus.Write32(_regs[PR], _regs[n]);
+			_bus.Write32(_regs[n], _regs[PR]);
 		}
 
 		private void STSPR(ushort op)
