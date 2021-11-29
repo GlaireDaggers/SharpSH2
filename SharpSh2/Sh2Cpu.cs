@@ -127,11 +127,6 @@ namespace SharpSh2
 		/// </summary>
 		public void Cycle()
 		{
-			if (_state != CpuState.ProgramExecution)
-			{
-				return;
-			}
-
 			uint mask = (_regs[SR] & SH_I) >> 4;
 
 			// check irq lines 0..7
@@ -155,6 +150,11 @@ namespace SharpSh2
 				}
 
 				break;
+			}
+
+			if (_state != CpuState.ProgramExecution && _state != CpuState.ExceptionProcessing)
+			{
+				return;
 			}
 
 			uint instr_addr = _regs[PC];
