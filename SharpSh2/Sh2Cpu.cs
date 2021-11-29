@@ -147,7 +147,7 @@ namespace SharpSh2
 					Push32(_regs[PC]);
 
 					_regs[SR] &= ~SH_I;
-					_regs[SR] |= (uint)(i & 0xF) << 4;
+					_regs[SR] |= (uint)(priority & 0xF) << 4;
 
 					_state = CpuState.ExceptionProcessing;
 				}
