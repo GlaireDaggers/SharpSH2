@@ -403,13 +403,13 @@ namespace SharpSh2
 			if (_delayedBranchTarget != 0)
 			{
 				Push32(_delayedBranchTarget);
-				_regs[PC] = _regs[VBR] + EXCEPT_ILLEGAL_SLOT_INS;
+				_regs[PC] = _bus.Read32(_regs[VBR] + EXCEPT_ILLEGAL_SLOT_INS);
 			}
 			// otherwise, we push the address of the illegal instruction and process a regular illegal instruction exception
 			else
 			{
 				Push32(_regs[PC] - 2); // PC already points at the next instruction, but what we push needs to point at *this* instruction
-				_regs[PC] = _regs[VBR] + EXCEPT_ILLEGAL_INS;
+				_regs[PC] = _bus.Read32(_regs[VBR] + EXCEPT_ILLEGAL_INS);
 			}
 		}
 
