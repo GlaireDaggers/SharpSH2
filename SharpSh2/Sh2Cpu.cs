@@ -2072,6 +2072,8 @@ namespace SharpSh2
 
 			_delay = Pop32();
 			_regs[SR] = Pop32() & SH_FLAGS;
+
+			_state = CpuState.ProgramExecution;
 		}
 
 		private void RTS()
@@ -2208,6 +2210,7 @@ namespace SharpSh2
 		{
 			_state = CpuState.Sleep;
 		}
+
 		private void STCGBR(ushort op)
 		{
 			//	STC GBR,Rn
