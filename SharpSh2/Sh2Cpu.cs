@@ -766,12 +766,10 @@ namespace SharpSh2
 			//		If T = 1, disp × 2+ PC → PC; if T = 0, nop
 			//	10001001 dddddddd
 
-			// TODO: Honestly not sure how this is any different from BT/S??
-
 			if ((_regs[SR] & SH_T) != 0)
 			{
 				int disp = (sbyte)(op & 0xFF);
-				_delay = (uint)(_regs[PC] + 2 + (disp * 2));
+				_regs[PC] = (uint)(_regs[PC] + 2 + (disp * 2));
 			}
 		}
 
@@ -2467,6 +2465,9 @@ namespace SharpSh2
 			//	11000011 iiiiiiii
 
 			uint imm = (uint)(op & 0xFF);
+
+			// HACK: use TRAP #0 as a sort of breakpoint
+			if (imm == 0) return;
 
 			Push32(_regs[SR]);
 			Push32(_regs[PC]);
