@@ -134,7 +134,10 @@ namespace SharpSh2
 			{
 				if ((_irq & (1 << i)) == 0) continue;
 
-				if (i > mask)
+				// TODO: this is probably not right.
+				int priority = i + 1;
+
+				if (priority > mask)
 				{
 					// handle interrupt
 
