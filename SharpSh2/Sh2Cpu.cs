@@ -149,6 +149,9 @@ namespace SharpSh2
 					_regs[SR] &= ~SH_I;
 					_regs[SR] |= (uint)(priority & 0xF) << 4;
 
+					uint ea = _regs[VBR] + (uint)(EXCEPT_INT_IRQ + (i * 4));
+					_regs[PC] = _bus.Read32(ea);
+
 					_state = CpuState.ExceptionProcessing;
 				}
 
