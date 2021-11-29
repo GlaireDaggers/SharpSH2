@@ -31,3 +31,4 @@ while (running)
 - [ ] Currently not cycle accurate, assumes 1 clock cycle per instruction
 - [ ] Interrupt implementation needs lots of work
 - [ ] Needs more thorough tests
+- [ ] I'm like 85% sure the division routines can be simplified or at least better commented once I understand how they actually work
